@@ -272,3 +272,20 @@ consul:
   service_check_interval: <%= @consul_service_check_interval %>
 <% end -%>
 <% end -%>
+
+tags:
+<% if @tag_nofailover != nil -%>
+  nofailover: <%= @tag_nofailover %>
+<% end -%>
+<% if @tag_clonefrom != nil -%>
+  clonefrom: <%= @tag_clonefrom %>
+<% end -%>
+<% if @tag_noloadbalance != nil -%>
+  noloadbalance: <%= @tag_noloadbalance %>
+<% end -%>
+<% if @tag_replicatefrom != nil -%>
+  replicatefrom: <%= @tag_replicatefrom %>
+<% end -%>
+<% if @tag_nosync != nil -%>
+  nosync: <%= @tag_nosync %>
+<% end -%>
