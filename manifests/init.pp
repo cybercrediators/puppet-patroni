@@ -55,6 +55,14 @@ class patroni (
   Boolean $pgsql_remove_data_directory_on_rewind_failure = $patroni::params::pgsql_remove_data_directory_on_rewind_failure,
   Array[Hash] $pgsql_replica_method    = [],
 
+  # Tags
+  Variant[Undef,Boolean] $tag_nofailover    = undef,
+  Variant[Undef,Boolean] $tag_clonefrom     = undef,
+  Variant[Undef,Boolean] $tag_noloadbalance = undef,
+  # IP address/hostname of another replica for cascading replication support
+  Variant[Undef,String]  $tag_replicatefrom = undef,
+  Variant[Undef,Boolean] $tag_nosync        = undef,
+
   # Consul Settings
   Boolean $use_consul    = $patroni::params::use_consul,
   String $consul_host    = $patroni::params::consul_host,
