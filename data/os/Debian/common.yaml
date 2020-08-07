@@ -1,0 +1,8 @@
+patroni::servicename: 'patroni'
+patroni::packagename: 'patroni'
+patroni::config_path: '/etc/patroni/config.yml'
+patroni::config_owner: 'root'
+patroni::config_group: 'root'
+patroni::config_mode: '0644'
+patroni::initdb_locale: 'en_US.utf8'
+patroni::pgsql_data_dir:

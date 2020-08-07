@@ -1,0 +1,126 @@
+patroni::scope:
+patroni::ensure_package: 'present'
+patroni::ensure_service: 'running'
+patroni::enable_service: true
+patroni::restart_service: false
+patroni::namespace: '/service/'
+patroni::hostname: "%{facts.hostname}"
+
+patroni::dcs_loop_wait: 10
+patroni::dcs_ttl: 30
+patroni::dcs_retry_timeout: 10
+patroni::dcs_maximum_lag_on_failover: 1048576
+patroni::dcs_master_start_timeout: 300
+patroni::dcs_synchronous_mode: false
+patroni::dcs_synchronous_mode_strict: false
+patroni::dcs_postgresql_use_pg_rewind: true
+patroni::dcs_postgresql_use_slots: true
+patroni::dcs_postgresql_recovery_conf: {}
+patroni::dcs_postgresql_parameters: {}
+
+patroni::bootstrap_method: 'initdb'
+patroni::initdb_data_checksums: true
+patroni::initdb_encoding: 'UTF8'
+
+patroni::bootstrap_pg_hba:
+  - 'host all all 0.0.0.0/0 md5',
+  - 'host replication rep_user 0.0.0.0/0 md5',
+
+patroni::bootstrap_users: {}
+patroni::bootstrap_post_bootstrap:
+patroni::bootstrap_post_init:
+patroni::superuser_username: 'postgres'
+patroni::superuser_password: 'changeme'
+patroni::replication_username: 'rep_user'
+patroni::replication_password: 'changeme'
+
+patroni::callback_on_reload:
+patroni::callback_on_restart:
+patroni::callback_on_role_change:
+patroni::callback_on_start:
+patroni::callback_on_stop:
+
+patroni::pgsql_connect_address: "%{facts.fqdn}:5432"
+patroni::pgsql_create_replica_methods: 
+  - 'basebackup'
+patroni::pgsql_config_dir:
+patroni::pgsql_bin_dir: ''
+
+patroni::pgsql_listen: '0.0.0.0:5432'
+patroni::pgsql_use_unix_socket: false
+patroni::pgsql_pgpass_path: '/tmp/pgpass0'
+patroni::pgsql_recovery_conf: {}
+patroni::pgsql_custom_conf:
+patroni::pgsql_parameters: {}
+patroni::pgsql_pg_hba: []
+
+patroni::pgsql_pg_ctl_timeout: 60
+patroni::pgsql_use_pg_rewind: true
+patroni::hiera_merge_pgsql_parameters: false
+patroni::pgsql_remove_data_directory_on_rewind_failure: false
+patroni::pgsql_replica_method: []
+
+patroni::tag_nofailover:
+patroni::tag_clonefrom:
+patroni::tag_noloadbalance:
+patroni::tag_replicatefrom:
+patroni::tag_nosync:
+
+patroni::use_consul: false
+patroni::consul_host: 'localhost'
+patroni::consul_url:
+patroni::consul_port: 8500
+patroni::consul_scheme: 'http'
+patroni::consul_token:
+patroni::consul_verify: false
+patroni::consul_register_service:
+patroni::consule_service_check_interval:
+patroni::consul_consistency:
+patroni::consul_cacert:
+patroni::consul_cert:
+patroni::consul_key:
+patroni::consul_dc:
+patroni::consul_checks:
+
+patroni::use_etcd: false
+patroni::etcd_host: '127.0.0.1:2379'
+patroni::etcd_hosts: []
+patroni::etcd_url:
+patroni::etcd_proxyurl:
+patroni::etcd_srv:
+patroni::etcd_protocol: 'http'
+patroni::etcd_username:
+patroni::etcd_password:
+patroni::etcd_cacert:
+patroni::etcd_cert:
+patroni::etcd_key:
+
+patroni::use_exhibitor: false
+patroni::exibitor_hosts: []
+patroni::exhibitor_poll_interval: 10
+patroni::exhibitor_port: 8080
+
+patroni::use_kubernetes: false
+patroni::kubernetes_namespace: 'default'
+patroni::kubernetes_labels: {}
+patroni::kubernetes_scope_label:
+patroni::kubernetes_role_label:
+patroni::kubernetes_use_endpoints: false
+patroni::kubernetes_pod_ip:
+patroni::kubernetes_ports:
+
+patroni::restapi_connect_address: "%{facts.fqdn}:8008"
+patroni::restapi_listen: '0.0.0.0:8008'
+patroni::restapi_username:
+patroni::restapi_password:
+patroni::restapi_certfile:
+patroni::restapi_keyfile:
+
+patroni::use_zookeeper: false
+patroni::zookeeper_hosts: []
+
+patroni::watchdog_mode: 'automatic'
+patroni::watchdog_device: '/dev/watchdog'
+patroni::watchdog_safety_margin: 5
+
+patroni::restart_service_command:
